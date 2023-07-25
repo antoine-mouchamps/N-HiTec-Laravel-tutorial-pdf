@@ -67,7 +67,7 @@ Les \routes{} se trouvent dans le fichier \verb|routes\web.php|. \\
 \end{wrapfigure}
 Dans ce fichier se trouve cette \route{} par défaut. Le premier argument de \verb|get()| est l'adresse (absolue) qui sera visée par la \route{}. En l'occurence, la fonction en deuxième argument sera exécutée lorsque l'URL est '/', donc \url{http://tutorialstepbystep/}. Remarquons que la fonction excécutée retourne la \view{} \textit{welcome}, c'est pourquoi nous voyons la page d'acceuil de laravel en nous rendant à cette adresse.
 
-Allons voir le contenu de cette \view{}. Les \views{} en \laravel{} ne sont pas écrites en fichier \verb|.html| de base, mais sous la forme de fichiers \verb|fichier.blade.php|, qui permettent d'ajouter des fonctionnalités en plus\footnote{\textit{\underline{HINT:}} toutes les commandes commençant par un \verb|@| existent grâce au format \blade{}, ainsi que la commande \verb|{{}}|.} à l'\html{} classique. 
+Allons voir le contenu de cette \view{}. Les \views{} en \laravel{} ne sont pas écrites en fichier \verb|.html| de base, mais sous la forme de fichiers \verb|fichier.blade.php|, qui permettent d'ajouter des fonctionnalités en plus\footnote{\textit{\underline{HINT:}} toutes les commandes commençant par un \verb|@| existent grâce au format \blade{}, ainsi que la commande \verb|{{}}|. Plus d'informations \href{https://laravel.com/docs/10.x/blade#blade-directives}{ici}.} à l'\html{} classique. 
 
 Il y a bien beaucoup de chose dedans mais pas de panique: supprimons tout.
 
@@ -333,7 +333,31 @@ Néanmoins, quelques notions clées:
     \item rien à voir avec \bs{}, \verb|config()| permet d'accéder à certaines valeurs, notament celles du \verb|.env|. En l'occurence, \verb|'app.name'| permet d'accéder à \verb|APP_NAME| (et si cette valeur n'existe pas, le deuxième argument est affiché).
 \end{itemize}
 
-Dans la \texttt{Section} (WIP), nous verrons comment améliorer cette navbar.
+Dans la \texttt{Section} (WIP), nous verrons comment améliorer cette navbar. En attendant, voilà ce à quoi elle devrait ressembler:
+
+\begin{figure}[!h]
+    \centering
+    \begin{minipage}[b]{0.9\textwidth}
+        \centering
+        \fbox{\includegraphics[width=\textwidth]{figures-C1/navbar_full.pdf}}
+        \caption{navbar sur un écran de largeur $>992\mathrm{px}$}
+    \end{minipage}
+    \begin{minipage}[b]{0.44\textwidth}
+        \centering
+        \fbox{\includegraphics[width=\textwidth]{figures-C1/navbar_full_phone_2.pdf}}
+        \captionsetup{justification=centering}
+        \captionof{figure}{navbar vue depuis un téléphone (largeur $<992\mathrm{px}$)}
+    \end{minipage}
+    \hspace{0.1cm}
+    \begin{minipage}[b]{0.44\textwidth}
+        \centering
+        \fbox{\includegraphics[width=\textwidth]{figures-C1/navbar_full_phone_1.pdf}}
+        \captionsetup{justification=centering}
+        \captionof{figure}{navbar en ayant appuyé sur le bouton en haut à droite}
+    \end{minipage}
+\end{figure}
+
+\newpage
 
 \subsection{Base de donnée}
 Nous allons créer une base de donnée en utilisant l'exemple de posts sur un blog.
@@ -495,6 +519,54 @@ Pour le coup, R.A.S. en terme de nouveautées donc nous pouvons maintenant passe
 \subsubsubsection{create}
 
 Cette partie est plus intéressante car elle va amener un nouveau concept, les \forms{}. Jusque ici, nous n'avons jamais eu à rentrer nous mêmes des données et à les envoyer à notre site pour qu'il fasse des choses avec, c'est exactement à cela que servent les \forms{}.
+
+\begin{wrapfigure}[5]{r}{0.4\textwidth}
+    \vspace{-0.5cm}
+    \includegraphics[width=0.4\textwidth]{figures-C1/post_create_controller.pdf}
+\end{wrapfigure}
+Tout d'abord, remplissons la méthode \verb|create()| du controller et créons le fichier \\ \verb|resources/posts/create.blade.php| comme nous en avons maintenant l'habitude.
+
+Maintenant, il faut remplir la \blade:
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures-C1/post_create_blade.pdf}
+\end{figure}
+Ici il y'a pas mal de nouveautés. On voit en effet apparaitre trois nouveaux tags \html:
+
+\begin{enumerate}
+    \item \verb|<form>|: Le \form{} permet donc l'envoit d'information entrées par l'utilisateur. Pour cela, on doit lui fournir l'URL vers laquelle aller lorsque le \form{} est envoyé, c'est ce que l'on met dans \verb|action|. En l'occurence, le \texttt{resource controller} nous a créé une \route{} pour cela, appelée \verb|'posts.store'| et qui permettra de stocker les informations du \form{}. Nous verrons cela en détail à la prochaine section. Ensuite, il faut préciser le type de requête effectuée, et lorsque l'on stocke quelque chose, c'est une requête \verb|POST|\footnote{Pour afficher une \blade, on utilisait des requêtes \verb|GET|. \href{https://developer.mozilla.org/fr/docs/Web/HTTP/Methods}{Pour en savoir plus}}
+    \item \verb|<label>|: Celui-ci est simplement utilisé pour donner un nom\footnote{un nom visible sur la page internet.} à un champ \verb|<input>|. Il suffit de spécifier à quel champ le \verb|<label>| fait référence en mettant le \verb|name| de l'\verb|<input>| dans l'attribut \verb|for| du \verb|<label>|.
+    \item \verb|<input>| Enfin, ce tag correspond à un champ à remplir. Ce champ peut prendre plusieurs formes qui s'indiquent au moyen de l'attribut \verb|type|. En l'occurence nous utilisons un champ \verb|text| pour une petite phrase/mots (ici, le titre de notre post) et un champ \verb|textarea| pour pouvoir introduire un paragraphe (le corps de notre post)\footnote{Il existe de nombreux autres types pour des fichiers, dates, boites à cocher, \ldots vous les trouverez \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types}{ici}.}. Les \verb|<input>| peuvent posséder de \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes}{très nombreux attributs}, ici nous utilisons les attributs:
+    \begin{itemize}
+        \item \verb|name| qui donne le nom de la variable accessible dans le \controller{}, qui contiendra les données envoyées par cet \verb|<input>|.
+        \item \verb|placeholder| qui permet d'afficher un petit texte en fond dans le champ (pour par exemple donner un format de réponse)
+        \item \verb|value| qui permet de donner une valeur prédéfinie au champ lorsque l'on affiche la page. Ici, \verb|old()| est une fonction prenant en argument le nom d'un \verb|<input>| et qui permet d'afficher la valeur du champ (si elle existait\footnote{on peut donner en deuxième argument à la fonction un texte à afficher lorsque le champ était vide à la requête prcédente.}) lors de la requête précédente. C'est utile lorsque les données doivent être validées avant d'être stockées (ex: est-ce que tous les champ remplis?) et que l'utilisateur est renvoyé vers la page de saisie du \form{} si la validation échoue.
+    \end{itemize}
+\end{enumerate}
+La dernière commande inconnue est le \verb|@csrf|. C'est une mesure de sécurité contre un certain type d'attaque. Plus d'information \href{https://laravel.com/docs/10.x/csrf}{ici}.
+
+Bon, ce fût beaucoup (trop) de bla-bla, mais on va (enfin) pouvoir passer à la suite! Promis, les trois dernières méthodes seront bien plus simples.
+
+\subsubsubsection{store}
+On a vu à la section précédente que les données du \form{} étaient envoyées à la route \verb|'posts.store'|, or cette \route{} redirige vers cette fonction! C'est donc ici que nous allons stocker le post nouvellement créé.
+
+\begin{wrapfigure}[8]{r}{0.7\textwidth}
+    \vspace{-0.5cm}
+    \includegraphics[width=0.7\textwidth]{figures-C1/post_store_controller.pdf}
+\end{wrapfigure}
+Tout d'abord, nous allons vérifier si les 2 champs \verb|titre| et \verb|message| ont bien été remplis (s'ils doivent être remplis, ils sont requis $\Rightarrow$ \verb|required|). Pour cela, on utilise la fonction \verb|validate()| de \laravel\footnote{Plus d'informations ainsi que la liste des règles de \texttt{validation} \href{https://laravel.com/docs/10.x/validation#quick-writing-the-validation-logic}{ici}.}. Si la \texttt{validation} rate, l'utilisateur est renvoyé à la page précédente et si elle réussit, alors on continue.
+
+L'étape suivante est de créer un nouveau post, via son \model{}. Ensuite, on remplit ses champs avec les valeurs obtenues dans le \form{} et on le sauvegarde dans la base de donnée. Enfin, il ne reste plus qu'à envoyer l'utilisateur quelque part (la liste des posts) et le tour est joué!\footnote{La variable \verb|'success'| sera utilisée dans la \texttt{Section~\ref{sec:messages}}}
+
+\
+
+
+
+
+
+\newpage
+\subsection{Messages}\label{sec:messages}
 
 
 
