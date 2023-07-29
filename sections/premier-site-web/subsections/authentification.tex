@@ -31,7 +31,7 @@ Premièrement, ajoutez cette ligne dans \linebreak \verb|config/app.php|, dans l
     \includegraphics[width=0.5\textwidth]{figures-C1/config_fortify.pdf}
 \end{wrapfigure}
 
-Ensuite, ajoutez \verb|/* */| pour commenter les éléments comme ci-contre. L'array \verb|features| permet de dire à \fortify{} quelles fonctionnalités vous souhaitez activer. En l'occurence, nous sommes intéressés par \verb|registration()| et \verb|resetPasswords()|. Voici la liste des fonctionnalités:
+Ensuite, dans \verb|config/fortify.php|, ajoutez \verb|/* */| pour commenter les éléments comme ci-contre. L'array \verb|features| permet de dire à \fortify{} quelles fonctionnalités vous souhaitez activer. En l'occurence, nous sommes intéressés par \verb|registration()| et \verb|resetPasswords()|. Voici la liste des fonctionnalités:
 
 \begin{itemize}
     \item \verb|registration()| permet l'authentification de base (register/login).
