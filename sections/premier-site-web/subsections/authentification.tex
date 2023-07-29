@@ -45,7 +45,13 @@ Ensuite, dans \verb|config/fortify.php|, ajoutez \verb|/* */| pour commenter les
     \item \verb|twoFactorAuthentification| permet d'activer la double authentification.
 \end{itemize}
 
-\newpage
+Ensuite, il faut dire à \fortify{} quelles \views{} correspondent à quelles \routes{}. Pour cela, ajoutez ceci dans \verb|app/Providers/FortifyServiceProvider.php|, plus précisément dans la méthode \verb|boot()|:
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures-C1/fortify_provider.pdf}
+\end{figure}
+
 
 \subsubsubsection{Views}
 Ensuite, il faut évidement créer les views pour les fonctionnalités que nous gardons. Comme elles sont (très) longues et proviennent d'un package qui n'est plus officiellement supporté (\href{https://github.com/laravel/ui}{Laravel UI}), vous pouvez les trouver ici: \url{https://github.com/nhitec/Laravel-tutorial-auth-blades}. Placez le dossir \verb|auth| dans \verb|resources/views|, et le tour est joué!\footnote{Remarquez que nous n'avons eu besoin ni de \controllers{} ni de \routes{}. C'est parce qu'ils sont déjà créés pour nous. Pour votre curiosité, vous pouvez trouver les \routes{} créées par \fortify{} dans le fichier \verb|vendor/laravel/fortify/routes/routes.php|.}
@@ -57,6 +63,8 @@ Afin d'accéder à ces nouvelles pages, il faut que l'on modifie nos boutons dan
     \includegraphics[width=0.75\textwidth]{figures-C1/index_auth.pdf}
 \end{figure}
 
+\newpage
+
 Voici les pages que vous devriez obtenir:
 
 \begin{figure}[!h]
@@ -66,8 +74,6 @@ Voici les pages que vous devriez obtenir:
     \begin{subfigure}[c]{0.24\textwidth}
         \caption{\url{http://tutorialstepbystep/register}} 
     \end{subfigure}
-\end{figure}
-\begin{figure}[!h]\ContinuedFloat{}
     \begin{subfigure}[c]{0.73\textwidth}
         \fbox{\includegraphics[width=\textwidth]{figures-C1/auth_login.pdf}}
     \end{subfigure}\hfill
