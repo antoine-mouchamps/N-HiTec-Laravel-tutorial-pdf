@@ -220,7 +220,7 @@ Maintenant, tout est prêt pour commencer à utiliser \bs{}.
 
 \subsubsection{Utilisation}
 
-Comme expliqué plus haut, \bs{} nous fournit une multitude de \verb|class| que nous pouvons utiliser pour styliser nos \textit{tags} \html{}. Modifions donc nos \blades{} \verb|about.blade.php| et \verb|index.blade.php| comme ceci:
+Comme expliqué plus haut, \bs{} nous fournit une multitude de \verb|class| que nous pouvons utiliser pour styliser nos \textit{tags} \html{}. Modifions donc nos \views{} \verb|about.blade.php| et \verb|index.blade.php| comme ceci:
 
 \SaveVerb{about}|about.blade.php|
 \SaveVerb{index}|index.blade.php|
@@ -259,7 +259,7 @@ Pour la customisation de la page des services, nous allons en profiter pour déc
     \includegraphics[width=0.5\textwidth]{figures-C1/services_bs.pdf}
 \end{wrapfigure}
 
-Ensuite, nous pouvons utiliser les variables \verb|title| et \verb|services| dans la\blade{} concernée. Dans la \texttt{Section~\ref{sec:welcome!}} nous avons pris connaissance des avantages du format \verb|.blade.php|. Celui-ci nous apporte donc les commandes \verb|{{}}|\footnote{Cette commande agit comme un \verb|printf()| en C. Elle permet d'afficher le contenu de la variable en argument.} et \verb|@foreach()|\footnote{Boucle \verb|foreach| classique, pour itérer sur un tableau. Les tags \verb|<a>| ainsi que \verb|<ul>| et \verb|<li>| seront expliqué à la section suivante.}.
+Ensuite, nous pouvons utiliser les variables \verb|title| et \verb|services| dans la \view{} concernée. Dans la \texttt{Section~\ref{sec:welcome!}} nous avons pris connaissance des avantages du format \verb|.blade.php|. Celui-ci nous apporte donc les commandes \verb|{{}}|\footnote{Cette commande agit comme un \verb|printf()| en C. Elle permet d'afficher le contenu de la variable en argument.} et \verb|@foreach()|\footnote{Boucle \verb|foreach| classique, pour itérer sur un tableau. Les tags \verb|<a>| ainsi que \verb|<ul>| et \verb|<li>| seront expliqué à la section suivante.}.
 
 \newpage
 
@@ -498,7 +498,7 @@ Maintenant, pourquoi l'avoir appellé \verb|$id|? Simplement parce qu'il contien
 
 \textit{\underline{PS:}} L'écriture un petit peu différente du \verb|->with()| permet de simplifier l'écriture que nous avons utilisée jusqu'ici lorsque qu'il n'y a qu'un seul élément à ajouter.
 
-Enfin, la \blade{} corresondante peut être créée au nom et emplacement \verb|resources/views/posts/show.blade.php|:
+Enfin, la \view{} corresondante peut être créée au nom et emplacement \verb|resources/views/posts/show.blade.php|:
 
 \begin{figure}[!h]
     \centering
@@ -517,7 +517,7 @@ Cette partie est plus intéressante car elle va amener un nouveau concept, les \
 \end{wrapfigure}
 Tout d'abord, remplissons la méthode \verb|create()| du controller et créons le fichier \\ \verb|resources/posts/create.blade.php| comme nous en avons maintenant l'habitude.
 
-Maintenant, il faut remplir la \blade:
+Maintenant, il faut remplir la \view:
 
 \begin{figure}[!h]
     \centering
@@ -526,7 +526,7 @@ Maintenant, il faut remplir la \blade:
 Ici il y'a pas mal de nouveautés. On voit en effet apparaitre trois nouveaux tags \html:
 
 \begin{enumerate}
-    \item \verb|<form>|: Le \form{} permet donc l'envoit d'information entrées par l'utilisateur. Pour cela, on doit lui fournir l'URL vers laquelle aller lorsque le \form{} est envoyé, c'est ce que l'on met dans \verb|action|. En l'occurence, le \texttt{resource controller} nous a créé une \route{} pour cela, appelée \verb|'posts.store'| et qui permettra de stocker les informations du \form{}. Nous verrons cela en détail à la prochaine section. Ensuite, il faut préciser le type de requête effectuée, et lorsque l'on stocke quelque chose, c'est une requête \verb|POST|\footnote{Pour afficher une \blade, on utilisait des requêtes \verb|GET|. \href{https://developer.mozilla.org/fr/docs/Web/HTTP/Methods}{Pour en savoir plus}}
+    \item \verb|<form>|: Le \form{} permet donc l'envoit d'information entrées par l'utilisateur. Pour cela, on doit lui fournir l'URL vers laquelle aller lorsque le \form{} est envoyé, c'est ce que l'on met dans \verb|action|. En l'occurence, le \texttt{resource controller} nous a créé une \route{} pour cela, appelée \verb|'posts.store'| et qui permettra de stocker les informations du \form{}. Nous verrons cela en détail à la prochaine section. Ensuite, il faut préciser le type de requête effectuée, et lorsque l'on stocke quelque chose, c'est une requête \verb|POST|\footnote{Pour afficher une \view, on utilisait des requêtes \verb|GET|.\ \href{https://developer.mozilla.org/fr/docs/Web/HTTP/Methods}{Pour en savoir plus}}
     \item \verb|<label>|: Celui-ci est simplement utilisé pour donner un nom\footnote{un nom visible sur la page internet.} à un champ \verb|<input>|. Il suffit de spécifier à quel champ le \verb|<label>| fait référence en mettant le \verb|id| de l'\verb|<input>| dans l'attribut \verb|for| du \verb|<label>|.
     \item \verb|<textarea>|: Il fonctionne comme un \verb|<input>| mais est spécialisé pour la gestion de paragraphes. L'attribut \verb|value| est quant à lui substitué par l'espace entre les deux marqueurs \verb|<textarea>| et \verb|</textarea>|.
     \item \verb|<input>|: Enfin, ce tag correspond à un champ à remplir. Ce champ peut prendre plusieurs formes qui s'indiquent au moyen de l'attribut \verb|type|. En l'occurence nous utilisons un champ \verb|text| pour une petite phrase/mots (ici, le titre de notre post)\footnote{Il existe de nombreux autres types pour des fichiers, dates, boites à cocher, \ldots vous les trouverez \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types}{ici}.}. Les \verb|<input>| peuvent posséder de \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes}{très nombreux attributs}, ici nous utilisons les attributs:
@@ -570,13 +570,13 @@ L'étape suivante est de créer un nouveau post, via son \model{}. Ensuite, on r
 Pour l'édition, c'est plutôt simple. Tout d'abord remplissons la méthode du \controller{}:
 \vspace{1.5cm}
 
-Ensuite, créons la \blade{} dédiée:
+Ensuite, créons la \view{} dédiée:
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.75\textwidth]{figures-C1/post_edit_blade.pdf}
 \end{figure}
 
-Remarquez qu'il n'y a presque aucune différence avec la \blade{} de création de post, et c'est bien normal: on peut l'utiliser quasi à l'identique à condition de mettre les valeurs du post dans les bons champs lorsque l'on accède à la page. Une différence est néanmoins à noter, la présence du \verb|@method('PUT')|. Cette méthode permet de remplacer une donnée par une autre (notre post à modifier), mais elle n'est pas disponible directement dans les \forms{}. Il faut donc effectuer une petite accrobatie pour l'utiliser.
+Remarquez qu'il n'y a presque aucune différence avec la \view{} de création de post, et c'est bien normal: on peut l'utiliser quasi à l'identique à condition de mettre les valeurs du post dans les bons champs lorsque l'on accède à la page. Une différence est néanmoins à noter, la présence du \verb|@method('PUT')|. Cette méthode permet de remplacer une donnée par une autre (notre post à modifier), mais elle n'est pas disponible directement dans les \forms{}. Il faut donc effectuer une petite accrobatie pour l'utiliser.
 
 \subsubsubsection{update}\label{sec:posts_update}
 
@@ -668,19 +668,139 @@ Enfin, voici le résultat que vous devriez obtenir lorsque, par exemple, un post
     \caption{}
 \end{figure}
 
+Vous pouvez avoir l'impression que nous en avons enfin fini avec cette formation, mais\ldots il reste quelque chose qui devrait vous chiffoner: Les deux boutons \verb|login| et \verb|register| sur notre page d'acceuil, ils ne servent toujours à rien. 
+
+Dans la \texttt{Section~\ref{sec:auth}}, nous allons donc ajouter un système d'authentification très simple à notre site.
+
+\subsection[]{Authentification}\label{sec:auth}
+
+\subsubsection[Fortify][laravel.com/docs/10.x/fortify]{Fortify}
+
+Pour cela, nous allons utiliser le package \fortify{} de \laravel{}. 
+
+\textit{``Laravel Fortify is a frontend agnostic authentication backend implementation for Laravel. Fortify registers the routes and controllers needed to implement all of Laravel's authentication features, including login, registration, password reset, email verification, and more''.} (\href{https://laravel.com/docs/10.x/fortify#what-is-fortify}{Doc \laravel})
+
+Cela veut donc dire qu'après configuration, nous n'aurons ``plus qu'à'' créer les \views, et nous aurons finis! Vous l'aurez deviné, la difficulté viendra donc de cette configuration.
+
+\subsubsubsection{Installation}
+L'installation est plutôt rapide, ces deux commandes suffisent:
+\begin{enumerate}
+    \item \verb|composer require laravel/fortify|
+    \item \verb|php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"|
+\end{enumerate}
+
+Si vous êtes observateurs, vous aurez remarqué que cette dernière commande aura créé une nouvelle \migration{}, qu'il faut donc déployer. Exécutez donc \verb|php artisan migrate|.
+
+\subsubsubsection{Configuration}
 
 
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \vspace{-0.5cm}
+    \includegraphics[width=0.5\textwidth]{figures-C1/config_app.pdf}
+\end{wrapfigure}
+Premièrement, ajoutez cette ligne dans \linebreak \verb|config/app.php|, dans la liste des \verb|providers| utilisés par \laravel{}.
 
+\begin{wrapfigure}[8]{r}{0.5\textwidth}
+    \vspace{-0.5cm}
+    \includegraphics[width=0.5\textwidth]{figures-C1/config_fortify.pdf}
+\end{wrapfigure}
 
+Ensuite, ajoutez \verb|/* */| pour commenter les éléments comme ci-contre. L'array \verb|features| permet de dire à \fortify{} quelles fonctionnalités vous souhaitez activer. En l'occurence, nous sommes intéressés par \verb|registration()| et \verb|resetPasswords()|. Voici la liste des fonctionnalités:
 
+\begin{itemize}
+    \item \verb|registration()| permet l'authentification de base (register/login).
+    \item \verb|resetPasswords()| permet de réinitialiser son mot de passe.
+\end{itemize}
 
+\begin{itemize}[resume, before = \vspace*{-0.63cm}]
+    \item \verb|emailVerification()| permet de vérifier les adresses emails des utilisateurs.
+    \item \verb|updateProfileInformation()| permet de modifier son profil.
+    \item \verb|updatePassword()| permet de modifier son mot de passe depuis son profil. 
+    \item \verb|twoFactorAuthentification| permet d'activer la double authentification.
+\end{itemize}
 
+\newpage
 
+\subsubsubsection{Views}
+Ensuite, il faut évidement créer les views pour les fonctionnalités que nous gardons. Comme elles sont (très) longues et proviennent d'un package qui n'est plus officiellement supporté (\href{https://github.com/laravel/ui}{Laravel UI}), vous pouvez les trouver ici: \url{https://github.com/nhitec/Laravel-tutorial-auth-blades}. Placez le dossir \verb|auth| dans \verb|resources/views|, et le tour est joué!\footnote{Remarquez que nous n'avons eu besoin ni de \controllers{} ni de \routes{}. C'est parce qu'ils sont déjà créés pour nous. Pour votre curiosité, vous pouvez trouver les \routes{} créées par \fortify{} dans le fichier \verb|vendor/laravel/fortify/routes/routes.php|.}
 
+Afin d'accéder à ces nouvelles pages, il faut que l'on modifie nos boutons dans \verb|index.blade.php|. Nous allons ajouter les \routes{} aux deux bouttons existants, et en rajouter un troisème pour se déconnecter:
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures-C1/index_auth.pdf}
+\end{figure}
 
+Voici les pages que vous devriez obtenir:
 
+\begin{figure}[!h]
+    \begin{subfigure}[c]{0.73\textwidth}
+        \fbox{\includegraphics[width=\textwidth]{figures-C1/auth_register.pdf}}
+    \end{subfigure}\hfill
+    \begin{subfigure}[c]{0.24\textwidth}
+        \caption{\url{http://tutorialstepbystep/register}} 
+    \end{subfigure}
+\end{figure}
+\begin{figure}[!h]\ContinuedFloat{}
+    \begin{subfigure}[c]{0.73\textwidth}
+        \fbox{\includegraphics[width=\textwidth]{figures-C1/auth_login.pdf}}
+    \end{subfigure}\hfill
+    \begin{subfigure}[c]{0.24\textwidth}
+        \caption{\url{http://tutorialstepbystep/login}} 
+    \end{subfigure}
+    \begin{subfigure}[c]{0.73\textwidth}
+        \fbox{\includegraphics[width=\textwidth]{figures-C1/auth_reset.pdf}}
+    \end{subfigure}\hfill
+    \begin{subfigure}[c]{0.24\textwidth}
+        \caption{\url{http://tutorialstepbystep/forgot-password}\label{fig:auth_forgot}} 
+    \end{subfigure}
+    \caption{Les quatres pages de gestions des posts.}
+\end{figure}
 
+\newpage
+
+Remarquez que le bouton de la \texttt{Figure~\ref{fig:auth_forgot}} ne fonctionne pas, nous règlerons ce problème dans une future \texttt{Section~(WIP)}.
+
+\subsubsection[Middlewares][laravel.com/docs/10.x/middleware]{Middlewares}
+
+Nous arrivons à la fin! La dernière chose à faire, c'est protéger quelques \routes. En effet, il est préférable que n'importe qui ne puisse pas accéder aux posts sans s'être préalablement authentifié. Il faut donc trouver un moyen de vérifier si un utilisateur est connecté avant de lui donner accès à la gestion/création de posts. C'est exactement à cela que servent les \middlewares{}.
+
+De manière générale, les \middlewares{} sont des fonctions qui seront exécutées ``entre deux requêtes'', pour par exemple interdire d'accès une certaine \route{} et rediriger l'utilisateur selon certaines conditions.
+
+Les \middlewares{} se trouvent dans le dossier \verb|app/Http/Middleware| et sont configurés par le fichier \verb|app/Http/Kernel.php|. Les \middlewares{} que nous pouvons assigner manuellement aux \routes{}/\controllers{} sont ceux listés dans \verb|$middlewareAliases|.
+
+En ce qui nous concerne, le \middleware{} \verb|'auth'| est celui qu'il nous faut. Nous allons donc l'ajouter à aux \routes{} responsables des posts dans \verb|routes/web.php| comme cela:
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures-C1/middleware_auth.pdf}
+\end{figure}
+
+Et voilà! Désormais, lorsque vous essayez de voir ou de créer un post sans être connecté, vous devriez vous faire rediriger vers la page de connection.
+
+\newpage
+
+\subsection{Conclusion}
+
+\subsubsection{Postambule}
+
+Ce tutoriel touche (enfin) à sa fin! Ce fût long et surement douloureux pour vous, mais vous y êtes arrivés, ce qui mérite déjà des félicitations en soi. Donc bravo!
+
+Si vous avez toujours l'impression d'être un peut perdu, c'est tout à fait normal. Nous avons vu beaucoup de choses différentes, plusieurs languages différents, et des mécaniques qui s'entrecroisent. Ce n'est pas en suivant un tutoriel que vous deviendrez les maîtres de la programmation, et ce n'est pas l'objectif de ce tutoriel. Son objectif est de vous familiariser avec différentes notions afin de vous donner les clés nécessaires pour continuer de vous perfectionner et de comprendre les choses par vous mêmes. J'espère avoir accompli cet objectif!
+
+\subsubsection{Et ensuite?}
+
+Il y a plusieurs suites possibles pour vous améliorer. 
+
+Premièrement, vous pouvez lire les documentations données au fil de tutoriel afin d'assimiler les notions et d'aller plus loin. Vous pouvez vous mêmes essayer d'ajouter des fonctionnalités à ce mini-site (ou créer le vôtre de A à Z) pour tester vos nouvelles compétences.
+
+Ou alors, si vous continuez l'aventure \nhitec{} avec nous, vous aurez accès à encore plus de ressources pour continuer de vous former et d'apprendre des choses avec nous, et si vous le souhaitez, vous pourrez même ajouter votre pierre à l'édifice en 
+\begin{enumerate*} [1)]
+    \item contribuant à cette formation,
+    \item travaillant sur les nombreux projets que nous avons à proposer!
+\end{enumerate*}
+
+\nhitec{} vous attend!
 
 
 
@@ -736,6 +856,10 @@ commande pour créer le projet avec la bonne version: \\
     \item laravel ui deprecated, => faudra passer à Breeze, soit adaptation bootstrap soit passer à Tailwind, à véfléchir.
     \item ATTENTION qd on livre un sit, pas faire \verb|npm run dev| mais \verb|npm run prod|
     \item ajouter \verb|.active| sur les \verb|.nav-link| pour indiquer la page active
+    \item \url(https://www.youtube.com/watch?v=sukS7QOBpK0)
+    \item UUID comme primary keys
+    \item formation livewire dans le futur? Alternative à JS pour des sites en une seule page, => PHP => plus simple/rapide à aprendre (+ extensions vs code lol)
+    \item blade components? Voir ``atomic design'', c'est drôle mais pratique en vrai.
 \end{enumerate}
 
 \end{document}

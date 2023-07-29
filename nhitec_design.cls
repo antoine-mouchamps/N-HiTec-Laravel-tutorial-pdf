@@ -41,7 +41,10 @@
 \RequirePackage{wrapfig}        % Package to embed figures in texts
 \RequirePackage{fancyvrb}       % Package to allow \verb inside footnotes
 \RequirePackage[export]{adjustbox}      % Package to put figures to the left and right instead of \centering
-\RequirePackage{enumitem}      % Package to allow a list to follow a wrapfig and still align correctely.
+\RequirePackage[inline, shortlabels]{enumitem}      % Package to allow a list to follow a wrapfig and still align correctely.
+
+\setlist{itemjoin ={,\enspace},itemjoin* = { and\enspace}}
+
 \RequirePackage{letltxmacro}
 \RequirePackage{xparse}
 \RequirePackage{titlesec}
@@ -374,6 +377,7 @@
 \newcommand{\sass}[0]{SASS\includegraphics[height=10pt]{figures-logos/sass.pdf}\xspace}
 \newcommand{\phpmyadmin}[0]{PhpMyAdmin \includegraphics[height=10pt]{figures-logos/phpmyadmin.pdf}\xspace}
 \newcommand{\mysql}[0]{MySQL\xspace}
+\newcommand{\fortify}[0]{Fortify\xspace}
 
 \newcommand{\view}[0]{\texttt{view}\xspace}
 \newcommand{\views}[0]{\texttt{views}\xspace}
@@ -395,6 +399,8 @@
 \newcommand{\rows}[0]{\texttt{rows}\xspace}
 \newcommand{\form}[0]{\texttt{form}\xspace}
 \newcommand{\forms}[0]{\texttt{forms}\xspace}
+\newcommand{\middleware}[0]{\texttt{middleware}\xspace}
+\newcommand{\middlewares}[0]{\texttt{middlewares}\xspace}
 
 \newcommand{\db}[0]{base de donnée\xspace}
 
