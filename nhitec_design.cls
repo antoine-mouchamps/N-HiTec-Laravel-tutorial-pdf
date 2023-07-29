@@ -49,7 +49,10 @@
 \RequirePackage{xparse}
 \RequirePackage{titlesec}
 
-\RequirePackage[bookmarks=false]{hyperref}  % For links and other hyperref (figure or table number)
+\RequirePackage[
+    bookmarks=true,
+    pdfusetitle
+]{hyperref}  % For links and other hyperref (figure or table number)
 \hypersetup{
     pdffitwindow=true,
     pdfstartview={FitV},
@@ -408,7 +411,7 @@
 \LetLtxMacro{\oldsubsubsection}{\subsubsection}
 
 \RenewDocumentCommand{\subsubsection}{ O{} O{} m}{
-    \oldsubsubsection[#3]{#3}
+    \oldsubsubsection[#1]{#3}
     \ifthenelse{\equal{#2}{}}{}{
         \begin{wrapfigure}[0]{l}{0.4cm}
           \vspace{-1.4cm}
