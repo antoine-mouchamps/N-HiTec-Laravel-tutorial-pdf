@@ -8,7 +8,7 @@ Les \routes{} se trouvent dans le fichier \verb|routes\web.php|. \\
 \end{wrapfigure}
 Dans ce fichier se trouve cette \route{} par défaut. Le premier argument de \verb|get()| est l'adresse (absolue) qui sera visée par la \route{}. En l'occurence, la fonction en deuxième argument sera exécutée lorsque l'URL est '/', donc \url{http://tutorialstepbystep/}. Remarquons que la fonction excécutée retourne la \view{} \textit{welcome}, c'est pourquoi nous voyons la page d'acceuil de laravel en nous rendant à cette adresse.
 
-Allons voir le contenu de cette \view{}. Les \views{} en \laravel{} ne sont pas écrites en fichier \verb|.html| de base, mais sous la forme de fichiers \verb|fichier.blade.php|, qui permettent d'ajouter des fonctionnalités en plus\footnote{\textit{\underline{HINT:}} toutes les commandes commençant par un \verb|@| existent grâce au format \blade{}, ainsi que la commande \verb|{{}}|. Plus d'informations \href{https://laravel.com/docs/10.x/blade#blade-directives}{ici}.} à l'\html{} classique. 
+Allons voir le contenu de cette \view{}. Les \views{} en \laravel{} ne sont pas écrites en fichier \verb|.html| classiques, mais sous la forme de fichiers \verb|fichier.blade.php|, qui permettent d'ajouter des fonctionnalités en plus\footnote{\textit{\underline{HINT:}} toutes les commandes commençant par un \verb|@| existent grâce au format \blade{}, ainsi que la commande \verb|{{}}|. Plus d'informations \href{https://laravel.com/docs/10.x/blade#blade-directives}{ici}.} à l'\html{} classique. 
 
 Il y a bien beaucoup de chose dedans mais pas de panique: supprimons tout.
 
@@ -16,7 +16,7 @@ Plus précisément, ne gardons que ceci:
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=\textwidth]{figures-C1/welcome_blade_empty.pdf}
+    \includegraphics[width=0.75\textwidth]{figures-C1/welcome_blade_empty.pdf}
 \end{figure}
 
 On y voit déjà plus clair. Dans ce qu'il reste, il n'y a que deux choses principales à retenir pour le moment: 
@@ -26,28 +26,41 @@ On y voit déjà plus clair. Dans ce qu'il reste, il n'y a que deux choses princ
 \end{enumerate}
 
 \subsubsection[Controller][laravel.com/docs/10.x/controllers\#introduction]{Controller}
-Bon, il est temps de remplir tout ca. Commençons par créer un \controller{}. Pour cela, tapez
-\verb|php artisan make:controller PagesController|\footnote{\verb|php artisan make:| est une commande très utile pour créer énormément de fichiers que nous verrons plus tard.}. Les \controllers{} se trouvent dans \verb|app\Http\controllers{}\|. Dans \verb|PagesController|, créez trois fonctions comme à la \textsc{Figure }\ref{fig:PagesController1}.
 
-\begin{wrapfigure}[6]{r}{0.25\textwidth}
+Bon, il est temps de remplir tout ca.
+
+\begin{wrapfigure}[9]{r}{0.25\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.25\textwidth]{figures-C1/3_premieres_views.pdf}
 \end{wrapfigure}
 
-Vous l'aurez compris, \verb|return view()| permet d'afficher la \view{} donnée en argument. En l'occurence, les 3 \views{} \verb|index|, \verb|services|, \verb|about| n'existent pas encore, il va donc falloir les créer! Notez également que \verb|pages.| indique que ces 3 \views{} se trouvent dans le dossier \verb|pages|. Par conséquent, vous pouvez commencer par créer les 3 fichiers dans un nouveau dossier comme à droite.
+Commençons par créer un fichier \verb|pages| dans \verb|resources/views/|, et ajoutez trois autres fichiers comme indiqué ci-contre.
+
+Ensuite, il va falloir créer un \controller{}. Pour cela, tapez
+\verb|sail artisan make:controller PagesController|\footnote{\verb|php artisan make:| est une commande très utile pour créer énormément de fichiers que nous verrons plus tard. Comme nous l'utilisons au travers de \laravelsail, il faut utiliser \verb|sail artisan| à la place}. \linebreak Les \controllers{} se trouvent dans \verb|app\Http\controllers\|. Dans \verb|PagesController|, créez trois fonctions comme à la \textsc{Figure }\ref{fig:PagesController1}.
+
+\SaveVerb{term}|PagesController|
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures-C1/pages_controller_1a.pdf}
+    \end{subfigure}
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures-C1/pages_controller_1b.pdf}
+    \end{subfigure}
+    \caption{\protect\UseVerb{term}\label{fig:PagesController1}}
+\end{figure}
+
+Vous l'aurez compris, \verb|return view()| permet d'afficher la \view{} donnée en argument: en l'occurence, les 3 \views{} \verb|index|, \verb|services| et \verb|about|. Notez que \verb|pages.| indique que ces 3 \views{} se trouvent dans le dossier \verb|pages|.
 
 \newpage 
-\SaveVerb{term}|PagesController|
-\begin{wrapfigure}[16]{r}{0.5\textwidth}
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures-C1/pages_controller_1.pdf}
-    \caption{\protect\UseVerb{term}\label{fig:PagesController1}}
-\end{wrapfigure}
+
 Si vous vous rappellez bien de ce qu'on a vu plus tôt, chaque \view{} \html{} doit contenir un tag \verb|<head>|. Celui-ci sera le même pour chaque page donc il serait judicieux\footnote{\textbf{D.R.Y}: \textit{Don't Repeat Yourself!}} de créer une sorte de template dans lequel on mettrait le \verb|<head>| et qui sera ensuite utilisé pour les 26854 pages que comptera bientôt notre site! 
 
-COMME PAR HASARD les \views{} \verb|.blade.php| nous permettent de faire cela: commencez par créer un dossier \verb|layouts| dans les views, et créez un fichier dedans appellé \verb|app.blade.php|. Ensuite, remplissez-le avec le contenu de \verb|welcome.blade.php| (que vous pouvez désormais supprimer), puis ajoutez la commande \verb|@yield('content')| dans le \verb|<body>|. Enfin, il ne reste plus qu'a utiliser ce layout pour remplir vos 3 nouvelles \views{}.
+COMME PAR HASARD les fichiers \verb|.blade.php| nous permettent de faire cela: commencez par créer un dossier \verb|layouts| dans les views, et créez un fichier dedans appellé \verb|app.blade.php|. Ensuite, remplissez-le avec le contenu de \verb|welcome.blade.php| (que vous pouvez désormais supprimer), puis ajoutez la commande \verb|@yield('content')| dans le \verb|<body>|. Enfin, il ne reste plus qu'a utiliser ce layout pour remplir vos 3 nouvelles \views{}.
 
-\vspace{2cm}
 \SaveVerb{about}|about|
 \SaveVerb{services}|services|
 \SaveVerb{index}|index|
@@ -80,7 +93,7 @@ Enfin, pour pouvoir admirer le fruit de votre dur labeur, il faut créer les \ro
     \includegraphics[width=0.7\textwidth]{figures-C1/3_premieres_routes.pdf}
 \end{wrapfigure}
 Afin d'utiliser notre nouveau controller, il faut le déclarer pour que \laravel{} sache qu'il existe. C'est à ca que sert ``\verb|use gngngn|'', (ce qui est suit est plutôt évident).
-Ensuite, décortiquons ce qui se passe: Comme précédement, le 1er argument de \verb|get()| donne l'adresse. Par exemple, la 2eme route est appellée à l'URL \url{http://tutorialstepbystep/services}. Le deuxième argument donne dans un tableau le \controller{} ainsi que sa méthode à exécuter. Pour la deuxième route, aller à l'URL mensionnée va donc exécuter la fonction \verb|services()| que nous avons créée il y a 5 (ou 40) minutes. Celle ci nous retourne la \view{} correspondante, donc en allant sur cet URL nous voyons dans un coin de l'écran:
+Ensuite, décortiquons ce qui se passe: Comme précédement, le 1er argument de \verb|get()| donne l'adresse. Par exemple, la 2eme route est appellée à l'URL \url{http://tutorialstepbystep/services}. Le deuxième argument donne dans une \texttt{array} le \controller{} ainsi que sa méthode à exécuter. Pour la deuxième route, aller à l'URL mensionnée va donc exécuter la fonction \verb|services()| que nous avons créée il y a 5 (ou 40) minutes. Celle ci nous retourne la \view{} correspondante, donc en allant sur cet URL nous voyons dans un coin de l'écran:
 
 \begin{figure}[!h]
     \centering

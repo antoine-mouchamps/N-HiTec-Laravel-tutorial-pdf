@@ -5,31 +5,31 @@
 Le langage suit la philosophie suivante: à chaque sélecteur, on associe des propriétés. Les sélecteurs peuvent être des tags \html{} eux-mêmes, des \verb|class|, \verb|id|, ou d'autres choses. La bonne pratique est de styliser un maximum de composants en créant une multitude de \verb|class| ayant chacune une tâche spécifique (taille, couleur, etc) afin d'obtenir une structure générale et modulaire, et ensuite d'assigner autant de \verb|class| que l'on veut aux tags \html{} que l'on souhaite modifier. Plus de détails dans la section dédiées (WIP).
 
 \subsubsection[A quoi sert Bootstrap?][fr.wikipedia.org/wiki/Bootstrap\_(framework)]{A quoi sert \bs{}?}
-Autant dire que la philosophie décrite conduit très rapidement à des fichiers énormes (milliers de lignes), illisibles, de successions de sélecteurs-propriétés, ce qui conduit à une maintenance plus que laborieuse, alors que là n'est souvent pas la partie sur laquelle les développeurs veulent passer du temps (sauf si c'est leur métier, évidement\footnote{on parle alros de développeurs \textit{front-end}.}). C'est pour cela que de nombreux \textit{frameworks front-end} existent afin d'amener de nombreuses \verb|class| et plugins \js{} prédéfinis. En l'occurence, nous allons utiliser \bs{}, qui est un \textit{framework} utilisé pour construire des sites de manière \textit{responsive\footnote{\textit{responsive} signifie que le site/composant adapte son rendu en fonction de la taille de l'écran, du format etc, ce qui est quand même très important.}} rapidement et facilement.
+Autant dire que la philosophie décrite conduit très rapidement à des fichiers énormes (milliers de lignes), illisibles, de successions de sélecteurs$\rightarrow$propriétés, ce qui conduit à une maintenance plus que laborieuse, alors que là n'est souvent pas la partie sur laquelle les développeurs veulent passer du temps (sauf si c'est leur métier, évidement\footnote{on parle alors de développeurs \textit{front-end}, responsables entre autres du rendu des sites.}). C'est pour cela que de nombreux \textit{frameworks front-end} existent afin d'amener de nombreuses \verb|class| et plugins \js{} prédéfinis. En l'occurence, nous allons utiliser \bs{}, qui est un \textit{framework} utilisé pour construire des sites de manière \textit{responsive\footnote{\textit{responsive} signifie que le site/composant adapte son rendu en fonction de la taille de l'écran, du format etc, ce qui est quand même très important.}} rapidement et facilement.
 
 Pour plus de renseignement et pour découvrir les fonctionnalités de \bs{}, rendez-vous sur \href{https://getbootstrap.com/docs/5.3/getting-started/introduction/}{Doc \bs{}}. Dans la \texttt{Section } et dans votre futur, vous utiliserez énormément de \verb|class| \bs. Il est donc imporant de se familiariser avec rapidement, par exemple en lisant la documentation des \verb|class| que vous ne connaissez pas, même si c'est fort déroutant au début afin que cela roule tout seul à moyen terme.
 
 \subsubsection[Vite][laravel.com/docs/10.x/vite\#introduction]{\vite{}? Comme la rapidité de cette formation?}
 Les \textit{frameworks} ``règlent le problème'' des 10000 lignes de code à écrire, mais pas celui de leur gestion et compilation. Rentre alors en scène \vite:
 
-\textit{``Vite is a modern frontend build tool that provides an extremely fast development environment and bundles your code for production\footnote{\textit{production} signifie le déploiement du site pour le public}. When building applications with Laravel, you will typically use Vite to bundle your application's CSS and JavaScript files into production ready assets''.} (\href{https://laravel.com/docs/10.x/vite#introduction}{Doc \laravel{}})
+\textit{``Vite is a modern frontend build tool that provides an extremely fast development environment and bundles your code for production\footnote{\textit{production} signifie le déploiement du site pour le public}. When building applications with Laravel, you will typically use Vite to bundle your application's CSS and JavaScript files into production ready assets''.} (\href{https://laravel.com/docs/10.x/vite#introduction}{Doc \laravel{}}).
 
 \subsubsection[Installation]{Installation}
 
 Pour installer \bs{}, il suffit d'exécuter les commandes suivantes:
 \begin{enumerate}
-    \item \verb|npm install bootstrap @popperjs/core|, qui permet d'installer \verb|Popper|, une bibliothèque \js{} utilisé par \bs{}.
-    \item \verb|npm install sass --save-dev|, qui permet d'utiliser le langage \sass{}, utilisé par \\ \bs{}.
+    \item \verb|sail npm install bootstrap @popperjs/core|, qui permet d'installer \verb|Popper|, une bibliothèque \js{} utilisé par \bs{}.
+    \item \verb|sail npm install sass --save-dev|, qui permet d'utiliser le langage \sass{}, utilisé par \\ \bs{}.
 \end{enumerate}
 
-\begin{wrapfigure}[18]{r}{0.35\textwidth}
+\begin{wrapfigure}{r}{0.3\textwidth}
     \vspace{-0.5cm}
-    \includegraphics[width=0.35\textwidth]{figures-C1/bs_setup.pdf}
+    \includegraphics[width=0.25\textwidth]{figures-C1/bs_setup.pdf}
     \caption{\label{fig:bs_setup}}
 \end{wrapfigure}
-Ensuite, dans le dossier \verb|resources|, nous allons renommer le dossier \verb|css| en \verb|sass| et le fichier \verb|app.css| à l'intérieur en un fichier \verb|app.scss|. Il nous reste ensuite à ajouter un fichier \verb|_variables.scss| dans le dossier \verb|sass|, que nous utiliserons plus tard. Pour l'instant, nous allons juste le remplir avec le contenu de la \texttt{Figure~\ref{fig:variables.scss}}. Vous devriez donc obtenir un arrangement comme à la \textsc{Figure~\ref{fig:bs_setup}}. Comme nous l'avons vu VOIRSECTION, le fichier \verb|app.scss| est compilé par \vite{} en un fichier \css{} dans le dossier \verb|public| qui permettra de custommiser notre site web. Il faut donc le remplir par ce qui est donné par la \textsc{Figure }\ref{fig:app.scss}, où la première ligne permet de changer la police d'écriture utilisée par défaut (avec celle ajoutée dans \verb|_variables.scss|), la deuxième importe le fichier \verb|variables.scss| que nous venons de créer (qui pour le moment est vide) et enfin la troisième importe toutes les fonctionnalités de \bs{}. Nous verrons dans une future section (WIP) comment personnaliser ces importations pour n'importer que les fonctionnalités que l'on utilise, et donc gagner en performances. 
+Ensuite, dans le dossier \verb|resources|, nous allons renommer le dossier \verb|css| en \verb|sass| et le fichier \verb|app.css| à l'intérieur en un fichier \verb|app.scss|. Il nous reste ensuite à ajouter un fichier \verb|_variables.scss| dans le dossier \verb|sass|, que nous utiliserons plus tard. Pour l'instant, nous allons juste le remplir avec le contenu de la \texttt{Figure~\ref{fig:variables.scss}}. Vous devriez donc obtenir un arrangement comme à la \textsc{Figure~\ref{fig:bs_setup}}. Comme nous le verrons à la \texttt{Figure~\ref{fig:vite_config}}, le fichier \verb|app.scss| est compilé par \vite{} en un fichier \css{} dans le dossier \verb|public| qui permettra de custommiser notre site web. Il faut donc le remplir par ce qui est donné par la \textsc{Figure }\ref{fig:app.scss}, où la première ligne permet de changer la police d'écriture utilisée par défaut (avec celle ajoutée dans \verb|_variables.scss|), la deuxième importe le fichier \verb|variables.scss| que nous venons de créer (qui pour le moment est vide) et enfin la troisième importe toutes les fonctionnalités de \bs{}. Nous verrons dans une future section (WIP) comment personnaliser ces importations pour n'importer que les fonctionnalités que l'on utilise, et donc gagner en performances. 
 
-Par ailleurs, lorsque nous créerons des codes \sass{} custom, nous les utiliserons en les importants dans ce fichier.
+Par ailleurs, lorsque nous créerons des codes \sass{} custom, nous les utiliserons en les importants dans le fichier \verb|app.scss|.
 
 \begin{figure}[!h]
     \begin{minipage}{0.44\textwidth}
@@ -50,11 +50,14 @@ En ce qui concerne le code \js{} utilisé par \bs{}, il faut l'importer en ajout
 \begin{wrapfigure}[8]{r}{0.65\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.65\textwidth]{figures-C1/vite.config.pdf}
+    \caption{\label{fig:vite_config}}
 \end{wrapfigure}
 
 Enfin, il faut modifier les paramètres de \vite{} pour prendre en compte les changements que nous avons mis en place. Modifier donc la ligne 8 et ajoutez d'autres lignes dans le fichier \verb|vite.config.js| situé dans le dossier racine du site.
 
-\vspace{3cm}
+AJOUTER LES LIGNES POUR QUE CA MARCHE AVEC LARAVEL SAIL.
+
+\vspace{2.8cm}
 
 \begin{wrapfigure}[11]{r}{0.65\textwidth}
     \vspace{-0.5cm}
@@ -63,12 +66,12 @@ Enfin, il faut modifier les paramètres de \vite{} pour prendre en compte les ch
 
 Remarquez que jusqu'ici, on ne voit toujours pas de changement quant on va sur notre site. La raison est que nous n'avons pas encore ``dit'' à nos \views{} d'utiliser nos ajouts (jusqu'ici, seulement le changement de police). Pour cela, rendez-vous dans notre layout (càd \verb|app.blade.php|) et ajoutons la ligne suivante:
 
-\vspace{1.1cm}
+\vspace{1cm}
 Maintenant, tout est prêt pour commencer à utiliser \bs{}.
 
 \subsubsection[Utilisation]{Utilisation}
 
-Comme expliqué plus haut, \bs{} nous fournit une multitude de \verb|class| que nous pouvons utiliser pour styliser nos \textit{tags} \html{}. Modifions donc nos \views{} \verb|about.blade.php| et \verb|index.blade.php| comme ceci:
+Comme expliqué plus haut, \bs{} nous fournit une multitude de \verb|class| que nous pouvons utiliser pour styliser nos \textit{tags} \html{}. Modifions donc nos \views{} \verb|about.blade.php| et \verb|index.blade.php| comme aux \textsc{Figures~\ref{fig:about_bs}\&\ref{fig:index_bs}}.
 
 \SaveVerb{about}|about.blade.php|
 \SaveVerb{index}|index.blade.php|
@@ -77,7 +80,7 @@ Comme expliqué plus haut, \bs{} nous fournit une multitude de \verb|class| que 
     \begin{minipage}{0.28\textwidth}
          \centering
          \includegraphics[width=\textwidth]{figures-C1/about_bs.pdf}
-         \caption{\\\hspace{\textwidth} \protect\UseVerb{about}}
+         \caption{\\\hspace{\textwidth} \protect\UseVerb{about}\label{fig:about_bs}}
     \end{minipage}
     \begin{minipage}{0.7\textwidth}
          \centering
@@ -86,13 +89,13 @@ Comme expliqué plus haut, \bs{} nous fournit une multitude de \verb|class| que 
     \end{minipage}
 \end{figure}
 
-Par exemple, dans la \texttt{Figure~\ref{fig:index_bs}}, \verb|class="text-center"| assigne la classe \verb|text-center| à l'élément, et en maintenant la touche \textit{Ctl} enfoncée et en passant le curseur sur la classe, vous verrez ceci:
+Par exemple, dans la \texttt{Figure~\ref{fig:index_bs}}, \verb|class="text-center"| assigne la classe \verb|text-center| à l'élément, et en maintenant la touche \textit{Ctl} enfoncée et en passant le curseur sur la classe, vous verrez une classe permettant de centrer un'élément dans son conteneur.
 
-\begin{wrapfigure}[3]{r}{0.55\textwidth}
+\begin{wrapfigure}{r}{0.55\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.55\textwidth]{figures-C1/see_class.pdf}
 \end{wrapfigure}
-Dans le petit cadre, nous voyons le code \css{}\footnote{voir \texttt{Section~\ref{sec:css}}} correspondant à cette classe. Concrètement, cette \verb|class| permet de centrer l'élément dans son conteneur.
+Dans le petit cadre, nous voyons le code \css{}\footnote{voir \texttt{Section~\ref{sec:css}}} correspondant à cette classe.
 
 Pour la customisation de la page des services, nous allons en profiter pour découvrir une nouvelle mécanique: passer des données aux pages. En effet, c'est quand même pratique de pouvoir afficher des informations dynamiquement! Pour le moment, nous n'allons pas encore s'embêter avec la base de donnée, nous allons juste voir comment la mécanique de base fonctionne. Rappelez-vous de la \texttt{Section~\ref{sec:fonctionnement&philosophie}}, ce sont les \controllers{} qui s'occupent de manipuler les données avant d'afficher une \view{}. Dès lors, c'est dans la fonction \verb|services()| de \verb|PagesController.php| que nous allons ajouter des choses:
 \begin{figure}[!h]
@@ -111,7 +114,7 @@ Ensuite, nous pouvons utiliser les variables \verb|title| et \verb|services| dan
 
 \newpage
 
-Et voilà! Maintenant, il suffit de taper \verb|npm run dev|\footnote{Cette commande permet de compiler le \css{} et \js{} en créant un mini serveur localement. Cette commande utilisée lors du \underline{DEVELOPPEMENT DU SITE} permet d'appliquer les modifications apportées à des fichiers rapidement sans devoir refresh la page. Plus d'infos sur les commandes de \vite{} à la \texttt{Section~} (WIP).} pour admirer le résultat. C'est déjà vachement mieux, non?
+Et voilà! Maintenant, il suffit de taper \verb|sail npm run dev|\footnote{Cette commande permet de compiler le \css{} et \js{} en créant un mini serveur localement. Cette commande utilisée lors du \underline{DEVELOPPEMENT DU SITE} permet d'appliquer les modifications apportées à des fichiers rapidement sans devoir refresh la page. Pour compiler tout ça en production, il faut utiliser \verb|npm run build|. Plus de \verb|sail| car \laravelsail{} est un outil de développement, pas de déploiement!}(si ce n'était pas déjà fait) pour admirer le résultat. C'est déjà vachement mieux, non?
 
 \begin{figure}[!h]
     \begin{subfigure}[c]{0.73\textwidth}

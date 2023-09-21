@@ -379,6 +379,8 @@
 \newcommand{\vite}[0]{Vite\includegraphics[height=10pt]{figures-logos/vite.pdf}\xspace}
 \newcommand{\sass}[0]{SASS\includegraphics[height=10pt]{figures-logos/sass.pdf}\xspace}
 \newcommand{\phpmyadmin}[0]{PhpMyAdmin \includegraphics[height=10pt]{figures-logos/phpmyadmin.pdf}\xspace}
+\newcommand{\docker}[0]{Docker \includegraphics[height=10pt]{figures-logos/docker.pdf}\xspace}
+\newcommand{\laravelsail}[0]{Laravel Sail \includegraphics[height=10pt]{figures-logos/laravel-sail.pdf}\xspace}
 \newcommand{\mysql}[0]{MySQL\xspace}
 \newcommand{\fortify}[0]{Fortify\xspace}
 
