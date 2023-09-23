@@ -11,11 +11,11 @@ Cela veut donc dire qu'après configuration, nous n'aurons ``plus qu'à'' créer
 \subsubsubsection{Installation}
 L'installation est plutôt rapide, ces deux commandes suffisent:
 \begin{enumerate}
-    \item \verb|composer require laravel/fortify|
-    \item \verb|php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"|
+    \item \verb|sail composer require laravel/fortify|
+    \item \verb|sail artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"|
 \end{enumerate}
 
-Si vous êtes observateurs, vous aurez remarqué que cette dernière commande aura créé une nouvelle \migration{}, qu'il faut donc déployer. Exécutez donc \verb|php artisan migrate|.
+Si vous êtes observateurs, vous aurez remarqué que cette dernière commande aura créé une nouvelle \migration{}, qu'il faut donc déployer. Exécutez donc \verb|sail artisan migrate|.
 
 \subsubsubsection{Configuration}
 

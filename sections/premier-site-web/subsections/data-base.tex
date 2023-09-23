@@ -1,22 +1,22 @@
 \subsection{Base de donnée}
-Nous allons créer une base de donnée en utilisant l'exemple de posts sur un \docker{} et \laravelsail{} blog.
+Nous allons créer une base de donnée en utilisant l'exemple de posts sur un blog.
 
 
 \subsubsection[PHPMyAdmin][]{\phpmyadmin{}}
-\phpmyadmin{} est un site/logiciel permettant à des ignares comme nou\ldots comme vous* de manipuler des bases de données facilement sans connaissances en \mysql. Pour l'instant, nous allons configurer le \verb|.env| de notre site pour acceuillir une base de donnée et ensuite créer celle-ci grâce à \phpmyadmin{} (normalement ca ca sera fait ds le tuto d'installation en fait\ldots).
+\phpmyadmin{} est une interface permettant à des ignares comme nou\ldots comme vous* de manipuler et de visualiser le contenu des bases de données facilement sans connaissances en \mysql. Normalement, la configuration a été effectuée lors de la formation précédente et vous devriez pouvoir y accéder en vous rendant sur \url{http://tutorialstepbystep:8080}.
 
 \subsubsection[Models][laravel.com/docs/10.x/eloquent\#generating-model-classes]{Models}
-Comme dit dans la \texttt{Section~\ref{sec:fonctionnement&philosophie}}, le \model{} est l'objet qui nous permettra d'intéragir avec les \textit{posts} stockés dans notre base de donnée\footnote{pour chaque nouvel objet, on aura un \model{} correspondant}. Pour le créer, tapez \verb|php artisan make:model Post -m|, et observez la création d'un fichier \verb|Post.php| dans \verb|app/Models/|. Pour le moment, la class (au sens \php{} du terme) est vide, mais on peut ajouter des methods spécifique à ce \model{}, ce qui, nous le verrons (WIP), est très pratique.
+Comme dit dans la \texttt{Section~\ref{sec:fonctionnement&philosophie}}, le \model{} est l'objet qui nous permettra d'intéragir avec les \textit{posts} stockés dans notre base de donnée\footnote{pour chaque nouvel objet, on aura un \model{} correspondant}. Pour le créer, tapez \verb|sail artisan make:model Post -m|, et observez la création d'un fichier \verb|Post.php| dans \verb|app/Models/|. Pour le moment, la class (au sens \php{} du terme) est vide, mais nous pouvons ajouter des méthodes spécifiques à ce \model{}, ce qui, nous le verrons (WIP), est très pratique.
 
 \subsubsection[Migrations: théorie][laravel.com/docs/10.x/migrations\#introduction]{Migrations: comme les oiseaux?}
 
 Une \migration{} est un fichier qui permet de définir les \tables{} de notre base de donnée. Une \table{} est grosso modo un type de donnée que la \db{} va stocker. Par exemple, la liste de tous les utilisateurs est une \table{}, tout comme les \textit{posts} que nous allons créer. Chaque \table{} contient un certain nombre de \columns{} qui elles sont les données stockées en temps que telles. En l'occurence, notre \table{} de \textit{posts} doit contenir une \column{} pour le titre d'un \textit{post} et une pour son contenu en lui même\footnote{Tous ces termes sont compliqués à décrire avec des mots, mais sont en réalité très intuitifs quand on imagine les données affichées dans un grand tableau à double entrée.}.
 
-Pour créer notre migration, tapez \verb|rien du tout| car en fait, la \migration{} a été créée en même temps que notre \model{}! Elle se trouve dans \\\verb|database/migration/xxxx_xx_xx_xxxxxx_create_posts_table.php|. \\Ensuite, remplissez là comme à la \texttt{Figure~\ref{fig:basic_migration}}\footnote{lignes 16 et 17, de rien}:
+Pour créer notre migration, tapez \verb|rien du tout| car la \migration{} a été créée en même temps que notre \model{} gràce au \verb|-m|! Elle se trouve dans \\\verb|database/migration/xxxx_xx_xx_xxxxxx_create_posts_table.php|. \\Ensuite, remplissez là comme à la \texttt{Figure~\ref{fig:basic_migration}}\footnote{lignes 16 et 17, de rien}:
 
 Analysons tout a:
 \begin{itemize}
-    \item \verb|function up()| et \verb|function down()|: La première est exécutée quand on souhaite créer les \tables{} à l'intérieur tandis que la deuxième est exécutée lorsqu'on souhaite supprimer les \tables{} de la \db{}. Pour l'utilisation simple que nous faisont des \migrations{}, pensez à \verb|down| tout ce que vous \verb|up|-per.
+    \item \verb|function up()| et \verb|function down()|: La première est exécutée quand on souhaite créer les \tables{} à l'intérieur tandis que la deuxième est exécutée lorsqu'on souhaite supprimer les \tables{} de la \db{}. Pour l'utilisation simple que nous faisons des \migrations{}, pensez à \verb|down| tout ce que vous \verb|up|-per.
     \item \verb|Schema::create('posts',...| en gros, c'est la fonction utilisée pour créer la table \verb|'posts'|, et les \verb|$table->| qui suivent permettent de définir chaque \column{} de la table créée.
     \item \verb|id()|: l'id est ce qu'on appelle la \texttt{Primary Key}. Unique pour chaque \row{}\footnote{une \row{} est un élément de donnée dans une \table{}}, il permet d'identifier chaque élément de donnée. Il se trouve par défaut sur chaque \table{} nouvellement créée.
     \item \verb|string()| permet de créer une \column{} de type string, de taille 255. La taille est modifiable en ajoutant un nombre <255 en second argument.
@@ -55,7 +55,7 @@ Bon, après tant de blabla, passons à l'action. Mais avant cela, \laravel{} nou
     \end{minipage}
 \end{figure}
 
-Voilà! maintenant tapez \verb|php artisan migrate:fresh --seed| (où \verb|fresh| signifie que tout ce qui existait avant est supprimé et \verb|--seed| permet d'exécuter les \texttt{seeders} vus dans la \texttt{Section~} (WIP)) et, si tout va bien, vous verrez maintenant cela en allant dans \phpmyadmin{}:
+Voilà! maintenant tapez \verb|sail artisan migrate:fresh --seed| (où \verb|fresh| signifie que tout ce qui existait avant est supprimé et \verb|--seed| permet d'exécuter les \texttt{seeders} vus dans la \texttt{Section~} (WIP)) et, si tout va bien, vous verrez maintenant cela en allant dans \phpmyadmin{}:
 
 \begin{figure}[!h]
     \centering
@@ -72,7 +72,7 @@ Voilà! maintenant tapez \verb|php artisan migrate:fresh --seed| (où \verb|fres
 \subsubsection[PostsController][laravel.com/docs/10.x/controllers\#resource-controllers]{PostsController}
 
 Pour gérer ces posts, nous allons bien entendu avoir besoin d'un \controller{}. Comme ce genre de donnée va avoir des manipulations basiques très communes (création, liste, affichage, modification, suppression,\ldots), il existe un certain type de controller permettant de nous faire gagner du temps: le \texttt{resource} \controller{}. Tapez donc \\
-\verb|php artisan make:controller PostsController --resource| pour en créer un.
+\verb|sail artisan make:controller PostsController --resource| pour en créer un.
 
 Ensuite, il faut évidement définir des nouvelles routes. Une seule ligne toute simple nous permet de générer en réaliter 7 \routes{} différentes que nous verrons petit à petit. Ajoutez donc ces 2 lignes dans \verb|routes/web.php|:
 
@@ -94,12 +94,12 @@ Notez que en donnant \textit{'posts'} en argument à \verb|resource()|, celui-ci
 
 Petite parenthèse avant de continuer: un exemple de route générée par la commande de la \texttt{Figure~\ref{fig:post_route}} est: \\
 \verb|Route::get('/posts/{post}', [PostsController::class, show])->name('posts.show')|
-le \verb|{...}| dans l'URL est une sorte de paramètre dans l'URL, qui permet de passer des informations au controller. En effet, chaque paramètre dans l'URL sera passé (si on le souhaite) en argument aux fonctions du controller, dans le même ordre d'apparition que dans l'URL. Ce paramètre est extrêmement utile comme nous le verrons à la \texttt{Section~\ref{sec:post_show}}. Fin de la parenthèse.
+le \verb|{...}| dans l'URL est une sorte de paramètre dans l'URL, qui permet de passer des informations au controller. En effet, chaque paramètre dans l'URL sera passé (si on le souhaite) en argument à la fonction du controller appellée par cette \route, dans le même ordre d'apparition que dans l'URL. Ce paramètre est extrêmement utile comme nous le verrons à la \texttt{Section~\ref{sec:post_show}}. Pour plus d'informations sur les \routes générées par cette commande, voyez \href{https://laravel.com/docs/10.x/controllers#actions-handled-by-resource-controller}{ceci}. Fin de la parenthèse.
 
 Bon, maintenant, il faut remplir ce \controller{} et créer les \views{} qui vont avec. Commençons par les plus simples, \verb|index()| et \verb|show()|.
 
 \subsubsubsection{index}
-Cette method est utilisée pour afficher la liste de tous les Posts créés. 
+Cette méthode est utilisée pour afficher la liste de tous les Posts créés. 
 
 \begin{wrapfigure}[5]{r}{0.4\textwidth}
     \includegraphics[width=0.4\textwidth]{figures-C1/post_index_controller.pdf}
