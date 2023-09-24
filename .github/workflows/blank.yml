@@ -25,7 +25,7 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: N-HiTec-tutoriel-laravel.pdf
                   asset_name: N-HiTec-tutoriel-laravel-$tag.pdf
-                  release_name: N-HiTec-tutoriel-laravel-${{ github.ref_name }}"
+                  release_name: N-HiTec-tutoriel-laravel-${{ github.ref_name }}
                   tag: ${{ github.ref }}
                   overwrite: true
                   body: ${{steps.github_release.outputs.changelog}}
