@@ -27,7 +27,7 @@ Pour installer \bs{}, il suffit d'exécuter les commandes suivantes:
     \includegraphics[width=0.25\textwidth]{figures-C1/bs_setup.pdf}
     \caption{\label{fig:bs_setup}}
 \end{wrapfigure}
-Ensuite, dans le dossier \verb|resources|, nous allons renommer le dossier \verb|css| en \verb|sass| et le fichier \verb|app.css| à l'intérieur en un fichier \verb|app.scss|. Il nous reste ensuite à ajouter un fichier \verb|_variables.scss| dans le dossier \verb|sass|, que nous utiliserons plus tard. Pour l'instant, nous allons juste le remplir avec le contenu de la \texttt{Figure~\ref{fig:variables.scss}}. Vous devriez donc obtenir un arrangement comme à la \textsc{Figure~\ref{fig:bs_setup}}. Comme nous le verrons à la \texttt{Figure~\ref{fig:vite_config}}, le fichier \verb|app.scss| est compilé par \vite{} en un fichier \css{} dans le dossier \verb|public| qui permettra de custommiser notre site web. Il faut donc le remplir par ce qui est donné par la \textsc{Figure }\ref{fig:app.scss}, où la première ligne permet de changer la police d'écriture utilisée par défaut (avec celle ajoutée dans \verb|_variables.scss|), la deuxième importe le fichier \verb|variables.scss| que nous venons de créer (qui pour le moment est vide) et enfin la troisième importe toutes les fonctionnalités de \bs{}. Nous verrons dans une future section (WIP) comment personnaliser ces importations pour n'importer que les fonctionnalités que l'on utilise, et donc gagner en performances. 
+Ensuite, dans le dossier \verb|resources|, nous allons renommer le dossier \verb|css| en \verb|sass| et le fichier \verb|app.css| à l'intérieur en un fichier \verb|app.scss|. Il nous reste ensuite à ajouter un fichier \verb|_variables.scss| dans le dossier \verb|sass|, que nous utiliserons plus tard. Pour l'instant, nous allons juste le remplir avec le contenu de la \textsc{Figure~\ref{fig:variables.scss}}. Vous devriez donc obtenir un arrangement comme à la \textsc{Figure~\ref{fig:bs_setup}}. Comme nous le verrons à la \textsc{Figure~\ref{fig:vite_config}}, le fichier \verb|app.scss| est compilé par \vite{} en un fichier \css{} dans le dossier \verb|public| qui permettra de custommiser notre site web. Il faut donc le remplir par ce qui est donné par la \textsc{Figure }\ref{fig:app.scss}, où la première ligne permet de changer la police d'écriture utilisée par défaut (avec celle ajoutée dans \verb|_variables.scss|), la deuxième importe le fichier \verb|variables.scss| que nous venons de créer (qui pour le moment est vide) et enfin la troisième importe toutes les fonctionnalités de \bs{}. Nous verrons dans une future section (WIP) comment personnaliser ces importations pour n'importer que les fonctionnalités que l'on utilise, et donc gagner en performances. 
 
 Par ailleurs, lorsque nous créerons des codes \sass{} custom, nous les utiliserons en les importants dans le fichier \verb|app.scss|.
 
@@ -89,7 +89,7 @@ Comme expliqué plus haut, \bs{} nous fournit une multitude de \verb|class| que 
     \end{minipage}
 \end{figure}
 
-Par exemple, dans la \texttt{Figure~\ref{fig:index_bs}}, \verb|class="text-center"| assigne la classe \verb|text-center| à l'élément, et en maintenant la touche \textit{Ctl} enfoncée et en passant le curseur sur la classe, vous verrez une classe permettant de centrer un'élément dans son conteneur.
+Par exemple, dans la \textsc{Figure~\ref{fig:index_bs}}, \verb|class="text-center"| assigne la classe \verb|text-center| à l'élément, et en maintenant la touche \textit{Ctl} enfoncée et en passant le curseur sur la classe, vous verrez une classe\footnote{Avec les bonnes extensions VS code en tt cas\ldots voir les extensions dans la section~(WIP)} permettant de centrer un'élément dans son conteneur.
 
 \begin{wrapfigure}{r}{0.55\textwidth}
     \vspace{-0.5cm}
@@ -141,7 +141,7 @@ C'est bien beau, mais jusque ici le seul moyen de naviguer entre les pages est d
 
 \subsubsection[Navbar]{Navbar}
 
-C'est un gros morceau qui utilise beaucoup des \verb|class| de \bs{}, donc il va falloir s'accrocher. D'abord, créez un dossier \verb|inc| dans \verb|resources/views| et un fichier \verb|navbar.blade.php| dans ce nouveau dossier. Remplissez ce fichier comme la \texttt{Figure~\ref{fig:navbar}}.
+C'est un gros morceau qui utilise beaucoup des \verb|class| de \bs{}, donc il va falloir s'accrocher. D'abord, créez un dossier \verb|inc| dans \verb|resources/views| et un fichier \verb|navbar.blade.php| dans ce nouveau dossier. Remplissez ce fichier comme la \textsc{Figure~\ref{fig:navbar}}.
 
 \begin{figure}[!h]
     \centering
