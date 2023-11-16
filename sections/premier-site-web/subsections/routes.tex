@@ -6,7 +6,7 @@ Les \routes{} se trouvent dans le fichier \verb|routes\web.php|. \\
     \vspace{-0.5cm}
     \includegraphics[width=0.5\textwidth]{figures-C1/basic_route.pdf}
 \end{wrapfigure}
-Dans ce fichier se trouve cette \route{} par défaut. Le premier argument de \verb|get()| est l'adresse (absolue) qui sera visée par la \route{}. En l'occurence, la fonction en deuxième argument sera exécutée lorsque l'URL est '/', donc \url{http://tutorialstepbystep/}. Remarquons que la fonction excécutée retourne la \view{} \textit{welcome}, c'est pourquoi nous voyons la page d'acceuil de laravel en nous rendant à cette adresse.
+Dans ce fichier se trouve cette \route{} par défaut. Le premier argument de \verb|get()| est l'adresse (absolue) qui sera visée par la \route{}. En l'occurence, la fonction en deuxième argument sera exécutée lorsque l'URL est '/', donc \url{http://tutorialstepbystep/}. Remarquons que la fonction excécutée retourne la \view{} \textit{welcome}, c'est pourquoi nous voyons la page d'accueil de laravel en nous rendant à cette adresse.
 
 Allons voir le contenu de cette \view{}. Les \views{} en \laravel{} ne sont pas écrites en fichier \verb|.html| classiques, mais sous la forme de fichiers \verb|fichier.blade.php|, qui permettent d'ajouter des fonctionnalités en plus\footnote{\textit{\underline{HINT:}} toutes les commandes commençant par un \verb|@| existent grâce au format \blade{}, ainsi que la commande \verb|{{}}|. Plus d'informations \href{https://laravel.com/docs/10.x/blade#blade-directives}{ici}.} à l'\html{} classique. 
 
@@ -76,7 +76,7 @@ COMME PAR HASARD les fichiers \verb|.blade.php| nous permettent de faire cela: c
      \end{subfigure}
      \begin{subfigure}[b]{1\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{figures-C1/basic_acceuil.pdf}
+         \includegraphics[width=\textwidth]{figures-C1/basic_accueil.pdf}
      \end{subfigure}
         \caption{Contenu des \views{} \protect\UseVerb{about} (à gauche), \protect\UseVerb{services} (à droite) et \protect\UseVerb{index} (en bas)}
 \end{figure}
