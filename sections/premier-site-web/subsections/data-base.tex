@@ -182,6 +182,7 @@ Bon, ce fût beaucoup (trop) de bla-bla, mais on va (enfin) pouvoir passer à la
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.75\textwidth]{figures-C1/post_create_navbar.pdf}
+    \caption{}
 \end{figure}
 
 \newpage
@@ -192,9 +193,10 @@ On a vu à la section précédente que les données du \form{} étaient envoyée
 
 Tout d'abord, nous allons vérifier si les 2 champs \verb|titre| et \verb|message| ont bien été remplis (s'ils doivent être remplis, ils sont requis $\Rightarrow$ \verb|required|). Pour cela, on utilise la fonction \verb|validate()| de \laravel\footnote{Plus d'informations ainsi que la liste des règles de \texttt{validation} \href{https://laravel.com/docs/10.x/validation#quick-writing-the-validation-logic}{ici}.}. Si la \texttt{validation} rate, l'utilisateur est renvoyé à la page précédente et si elle réussit, alors on continue.
 
-\begin{wrapfigure}[9]{r}{0.7\textwidth}
+\begin{wrapfigure}[11]{r}{0.7\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.7\textwidth]{figures-C1/post_store_controller.pdf}
+    \caption{}
 \end{wrapfigure}
 L'étape suivante est de créer un nouveau post, via son \model{}. Ensuite, on remplit ses champs avec les valeurs obtenues dans le \form{} et on le sauvegarde dans la base de donnée. Enfin, il ne reste plus qu'à envoyer l'utilisateur quelque part (la liste des posts) et le tour est joué!\footnote{La variable \verb|'success'| sera utilisée dans la \texttt{Section~\ref{sec:messages}}} Plus qu'à rajouter les fonctionnalités de modification et de suppression et puis nous en aurons terminé.
 
@@ -205,6 +207,7 @@ L'étape suivante est de créer un nouveau post, via son \model{}. Ensuite, on r
 \begin{wrapfigure}[2]{r}{0.5\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.5\textwidth]{figures-C1/post_edit_controller.pdf}
+    \caption{}
 \end{wrapfigure}
 Pour l'édition, c'est plutôt simple. Tout d'abord remplissons la méthode du \controller{}:
 \vspace{1.5cm}
@@ -213,15 +216,17 @@ Ensuite, créons la \view{} dédiée:
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.75\textwidth]{figures-C1/post_edit_blade.pdf}
+    \caption{}
 \end{figure}
 
 Remarquez qu'il n'y a presque aucune différence avec la \view{} de création de post, et c'est bien normal: on peut l'utiliser quasi à l'identique à condition de mettre les valeurs du post dans les bons champs lorsque l'on accède à la page. Une différence est néanmoins à noter, la présence du \verb|@method('PUT')|. Cette méthode permet de remplacer une donnée par une autre (notre post à modifier), mais elle n'est pas disponible directement dans les \forms{}. Il faut donc effectuer une petite accrobatie pour l'utiliser.
 
 \subsubsubsection{update}\label{sec:posts_update}
 
-\begin{wrapfigure}[8]{r}{0.65\textwidth}
+\begin{wrapfigure}[9]{r}{0.65\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.65\textwidth]{figures-C1/post_update_controller.pdf}
+    \caption{}
 \end{wrapfigure}
 Lorsque le \form{} est envoyé, il faut bien sûr enregistrer le post dans notre \db{}. La route \verb|'posts.update'| nous envoit donc vers la méthode \verb|update()| que vous pouvez remplir comme ci-contre. Notez que ici aussi, la démarche est la même que pour la création de post (et c'est logique), mis à part qu'on cherche le post à modifier au lieu d'en créer un nouveau.
 
@@ -229,9 +234,10 @@ Lorsque le \form{} est envoyé, il faut bien sûr enregistrer le post dans notre
 
 Enfin, la suppression de post. Tout d'abord, ajoutons un bouton dans \verb|posts/show.blade.php| qui permet d'accéder à notre page de modification d'un post, un autre qui permettra de le supprimer, et stylisons un peu ces trois boutons afin qu'ils soient plaisant à voir (\textsc{Figure~\ref{fig:post_delete_blade}})
 
-\begin{wrapfigure}[4]{r}{0.65\textwidth}
+\begin{wrapfigure}[5]{r}{0.65\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.65\textwidth]{figures-C1/post_delete_controller.pdf}
+    \caption{}
 \end{wrapfigure}
 Ensuite, remplissons la méthode du \controller{}. La mécanique est ici triviale, il suffit de sélectionner le post que l'on souhaite et ensuite de le supprimer.
 
