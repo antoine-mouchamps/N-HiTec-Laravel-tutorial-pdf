@@ -88,9 +88,10 @@ Que se passe-t'il exactement? Chacune des \views{} va prendre le contenu du layo
 
 Enfin, pour pouvoir admirer le fruit de votre dur labeur, il faut créer les \routes{} qui permettront d'afficher ces pages. Pour cela, rendez-vous dans \verb|web.php|:
 
-\begin{wrapfigure}[15]{r}{0.7\textwidth}
+\begin{wrapfigure}[16]{r}{0.7\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.7\textwidth]{figures-C1/3_premieres_routes.pdf}
+    \caption{}
 \end{wrapfigure}
 Afin d'utiliser notre nouveau controller, il faut le déclarer pour que \laravel{} sache qu'il existe. C'est à ca que sert ``\verb|use gngngn|'', (ce qui est suit est plutôt évident).
 Ensuite, décortiquons ce qui se passe: Comme précédement, le 1er argument de \verb|get()| donne l'adresse. Par exemple, la 2eme route est appellée à l'URL \url{http://tutorialstepbystep/services}. Le deuxième argument donne dans une \texttt{array} le \controller{} ainsi que sa méthode à exécuter. Pour la deuxième route, aller à l'URL mensionnée va donc exécuter la fonction \verb|services()| que nous avons créée il y a 5 (ou 40) minutes. Celle ci nous retourne la \view{} correspondante, donc en allant sur cet URL nous voyons dans un coin de l'écran:

@@ -60,6 +60,7 @@ Enfin, il faut modifier les paramètres de \vite{} pour prendre en compte les ch
 \begin{wrapfigure}[11]{r}{0.65\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.65\textwidth]{figures-C1/vite_in_layout.pdf}
+    \caption{}
 \end{wrapfigure}
 
 Remarquez que jusqu'ici, on ne voit toujours pas de changement quant on va sur notre site. La raison est que nous n'avons pas encore ``dit'' à nos \views{} d'utiliser nos ajouts. Pour cela, rendez-vous dans notre layout (càd \verb|app.blade.php|) et ajoutons la ligne suivante:
@@ -99,6 +100,7 @@ Pour la customisation de la page des services, nous allons en profiter pour déc
 \begin{figure}[!h]
     \centering
     \includegraphics[width=\textwidth]{figures-C1/services_fct_bs.pdf}
+    \caption{}
 \end{figure}
 
 \verb|$titlefromcontroller| et \verb|$services| sont 2 variables, et nous les passons à la \view{} par l'intermédiaire du \verb|->with(...)|. 
@@ -106,6 +108,7 @@ Pour la customisation de la page des services, nous allons en profiter pour déc
 \begin{wrapfigure}[6]{r}{0.5\textwidth}
 \vspace{-0.5cm}
     \includegraphics[width=0.5\textwidth]{figures-C1/services_bs.pdf}
+    \caption{}
 \end{wrapfigure}
 
 Ensuite, nous pouvons utiliser les variables \verb|title| et \verb|services| dans la \view{} concernée. Dans la \texttt{Section~\ref{sec:welcome!}} nous avons pris connaissance des avantages du format \verb|.blade.php|. Celui-ci nous apporte donc les commandes \verb|{{}}|\footnote{Cette commande agit comme un \verb|printf()| en C. Elle permet d'afficher le contenu de la variable en argument.} et \verb|@foreach()|\footnote{Boucle \verb|foreach| classique, pour itérer sur un tableau. Les tags \verb|<a>| ainsi que \verb|<ul>| et \verb|<li>| seront expliqué à la section suivante.}.
