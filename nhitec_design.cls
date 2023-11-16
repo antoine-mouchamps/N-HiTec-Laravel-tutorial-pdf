@@ -49,6 +49,9 @@
 \RequirePackage{xparse}
 \RequirePackage{titlesec}
 
+\RequirePackage{etoolbox,refcount}
+\RequirePackage{multicol}
+
 \RequirePackage[
     bookmarks=true,
     pdfusetitle
@@ -381,6 +384,7 @@
 \newcommand{\phpmyadmin}[0]{PhpMyAdmin \includegraphics[height=10pt]{figures-logos/phpmyadmin.pdf}\xspace}
 \newcommand{\docker}[0]{Docker \includegraphics[height=10pt]{figures-logos/docker.pdf}\xspace}
 \newcommand{\laravelsail}[0]{Laravel Sail \includegraphics[height=10pt]{figures-logos/laravel-sail.pdf}\xspace}
+\newcommand{\vscode}[0]{VS Code \includegraphics[height=10pt]{figures-logos/vscode.pdf}\xspace}
 \newcommand{\mysql}[0]{MySQL\xspace}
 \newcommand{\fortify}[0]{Fortify\xspace}
 
@@ -452,5 +456,34 @@
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
+
+\newcounter{countitems}
+\newcounter{nextitemizecount}
+\newcommand{\setupcountitems}{%
+  \stepcounter{nextitemizecount}%
+  \setcounter{countitems}{0}%
+  \preto\item{\stepcounter{countitems}}%
+}
+\makeatletter
+\newcommand{\computecountitems}{%
+  \edef\@currentlabel{\number\c@countitems}%
+  \label{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+\newcommand{\nextitemizecount}{%
+  \getrefnumber{countitems@\number\c@nextitemizecount}%
+}
+\newcommand{\previtemizecount}{%
+  \getrefnumber{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+
+\newcommand{\extension}[2]{
+    \texttt{#1} par \textit{#2}
+}
   
 \makeatother
+
+\newenvironment{AutoMultiColItemize}{%
+\ifnumcomp{\nextitemizecount}{>}{3}{\begin{multicols}{2}}{}%
+\setupcountitems\begin{enumerate}}%
+{\end{enumerate}%
+\unskip\computecountitems\ifnumcomp{\previtemizecount}{>}{3}{\end{multicols}}{}}
