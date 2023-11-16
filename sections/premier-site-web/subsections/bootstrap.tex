@@ -47,7 +47,7 @@ Par ailleurs, lorsque nous créerons des codes \sass{} custom, nous les utiliser
 En ce qui concerne le code \js{} utilisé par \bs{}, il faut l'importer en ajoutant \verb|import * as bootstrap from 'bootstrap'| dans le fichier \verb|resources/js/app.js|.
 \newpage
 
-\begin{wrapfigure}[8]{r}{0.65\textwidth}
+\begin{wrapfigure}[12]{r}{0.65\textwidth}
     \vspace{-0.5cm}
     \includegraphics[width=0.65\textwidth]{figures-C1/vite.config.pdf}
     \caption{\label{fig:vite_config}}
@@ -55,7 +55,9 @@ En ce qui concerne le code \js{} utilisé par \bs{}, il faut l'importer en ajout
 
 Enfin, il faut modifier les paramètres de \vite{} pour prendre en compte les changements que nous avons mis en place. Modifier donc la ligne 8 et ajoutez d'autres lignes dans le fichier \verb|vite.config.js| situé dans le dossier racine du site.
 
-\vspace{2.8cm}
+\underline{PS:} Si vous utilisez WSL2, vous avez normalement un bout de code en plus dans ce fichier, il faut bien évidement le laisser.
+
+\vspace{0.3cm}
 
 \begin{wrapfigure}[11]{r}{0.65\textwidth}
     \vspace{-0.5cm}
@@ -63,7 +65,7 @@ Enfin, il faut modifier les paramètres de \vite{} pour prendre en compte les ch
     \caption{}
 \end{wrapfigure}
 
-Remarquez que jusqu'ici, on ne voit toujours pas de changement quant on va sur notre site. La raison est que nous n'avons pas encore ``dit'' à nos \views{} d'utiliser nos ajouts. Pour cela, rendez-vous dans notre layout (càd \verb|app.blade.php|) et ajoutons la ligne suivante:
+Remarquez que jusqu'ici, on ne voit toujours pas de changement quand on va sur notre site. La raison est que nous n'avons pas encore ``dit'' à nos \views{} d'utiliser nos ajouts. Pour cela, rendez-vous dans notre layout (càd \verb|app.blade.php|) et ajoutons la ligne suivante:
 
 \vspace{1cm}
 Maintenant, tout est prêt pour commencer à utiliser \bs{}.
